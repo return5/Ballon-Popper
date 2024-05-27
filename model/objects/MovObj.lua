@@ -1,4 +1,4 @@
-local ImgObj = require('model.ImgObj')
+local ImgObj = require('model.objects.ImgObj')
 local setmetatable = setmetatable
 local config = require('config.Config')
 

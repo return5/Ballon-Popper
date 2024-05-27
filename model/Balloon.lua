@@ -1,4 +1,4 @@
-local MovObj = require('model.MovObj')
+local MovObj = require('model.objects.MovObj')
 local setmetatable = setmetatable
 
 local Balloon = {}

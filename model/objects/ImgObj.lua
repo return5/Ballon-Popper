@@ -1,4 +1,4 @@
-local Object = require('model.Object')
+local Object = require('model.objects.Object')
 local setmetatable = setmetatable
 local floor = math.floor
 local draw = love.graphics.draw

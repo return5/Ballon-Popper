@@ -10,9 +10,9 @@ _ENV = AssetFactory
 
 function AssetFactory.generateAssets(playerChoice)
 	local balloons = BalloonFactory.generateBalloons()
-	local character = CharacterFactory.generateCharacter(playerChoice)
+	local character1,character2 = CharacterFactory.generateCharacter(playerChoice)
 	local background = CanvasFactory.generateBackground()
-	return balloons,character,background
+	return balloons,background,character1,character2
 end
 
 return AssetFactory
