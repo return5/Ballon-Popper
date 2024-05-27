@@ -99,7 +99,7 @@ function tick:update(dt)
       if e.recur then
         e.timer = e.timer + e.delay
       else
-        self:remove(i) 
+        self:remove(i)
       end
       self.err = e.timer
       e.fn()
