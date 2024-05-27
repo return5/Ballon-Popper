@@ -3,7 +3,7 @@ CharacterFactory.__index = CharacterFactory
 
 _ENV = CharacterFactory
 
-function CharacterFactory.createCharacter()
+function CharacterFactory.generateCharacter()
 
 end
 
