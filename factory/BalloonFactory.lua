@@ -4,6 +4,12 @@ local dir = require('config.Dir')
 local config = require('config.Config')
 local newImg = love.graphics.newImage
 local random = love.math.random
+
+local BalloonFactory = {}
+BalloonFactory.__index = BalloonFactory
+
+_ENV = BalloonFactory
+
 local balloonImgs = {
 	newImg('assets/img/balloons/balloon1.png'),
 	newImg('assets/img/balloons/balloon2.png'),
@@ -11,12 +17,6 @@ local balloonImgs = {
 	newImg('assets/img/balloons/balloon4.png'),
 	newImg('assets/img/balloons/balloon5.png')
 }
-
-local BalloonFactory = {}
-BalloonFactory.__index = BalloonFactory
-
-_ENV = BalloonFactory
-
 function BalloonFactory.createBalloon(balloonArr)
 	local balloonX = random(1,config.width)
 	local balloon = Balloon:new(balloonX,config.balloonStartY,0,balloonImgs[random(1,#balloonImgs)],0,random(config.balloonSpeedMin,config.balloonSpeedMax),dir.UP)
