@@ -12,6 +12,7 @@ function love.draw()
 		balloons[i]:print()
 	end
 	character1:print()
+	character1.hitBox:print()
 	character2:print()
 end
 

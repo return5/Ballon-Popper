@@ -1,9 +1,14 @@
 local setmetatable = setmetatable
+local points = love.graphics.points
 
 local HitBox = {}
 HitBox.__index = HitBox
 
 _ENV = HitBox
+
+function HitBox:print()
+	points(self.x,self.y,self.x,self.y_height,self.x_width,self.y,self.x_width,self.y_height)
+end
 
 function HitBox:checkYWithinHb2(hB2)
 	return ((self.y_height <= hB2.y_height and self.y_height >= hB2.y) or (self.y >= hB2.y and self.y <= hB2.y_height) or

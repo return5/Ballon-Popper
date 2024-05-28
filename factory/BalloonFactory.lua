@@ -2,6 +2,7 @@ local tick = require("libs.tick")
 local Balloon = require('model.Balloon')
 local dir = require('config.Dir')
 local config = require('config.Config')
+local HitBox = require('model.HitBox')
 local newImg = love.graphics.newImage
 local random = love.math.random
 
@@ -19,7 +20,9 @@ local balloonImgs = {
 }
 function BalloonFactory.createBalloon(balloonArr)
 	local balloonX = random(1,config.width)
-	local balloon = Balloon:new(balloonX,config.balloonStartY,0,balloonImgs[random(1,#balloonImgs)],0,random(config.balloonSpeedMin,config.balloonSpeedMax),dir.UP)
+	local balloonImg = balloonImgs[random(1,#balloonImgs)]
+	local hitBox = HitBox:new(balloonX,config.balloonStartY,balloonImg:getWidth())
+	local balloon = Balloon:new(balloonX,config.balloonStartY,hitBox,balloonImg,0,random(config.balloonSpeedMin,config.balloonSpeedMax),dir.UP)
 	balloonArr[#balloonArr + 1] = balloon
 end
 

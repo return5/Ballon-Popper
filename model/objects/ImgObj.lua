@@ -10,7 +10,7 @@ setmetatable(ImgObject,Object)
 _ENV = ImgObject
 
 function ImgObject:print()
-	draw(self.img,self.x,self.y,self.rot,1,1,self.halfWidth,self.halfHeight)
+	draw(self.img,self.x,self.y)--,self.rot,1,1,self.halfWidth,self.halfHeight)
 end
 
 function ImgObject:new(x,y,hitBox,img,rot)
