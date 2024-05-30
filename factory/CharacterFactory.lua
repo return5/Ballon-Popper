@@ -2,6 +2,7 @@ local config = require('config.Config')
 local MovObj = require('model.objects.MovObj')
 local dir = require('config.Dir')
 local HitBox = require('model.HitBox')
+local EmptyChar = require('model.EmptyCharacter')
 local random = love.math.random
 local newImg = love.graphics.newImage
 
@@ -43,6 +44,7 @@ function CharacterFactory.generateCharacter(playerChoice)
 	elseif playerChoice == "stormy" then
 		return CharacterFactory.generateStormy()
 	end
+	return EmptyChar:new()
 end
 
 return CharacterFactory
