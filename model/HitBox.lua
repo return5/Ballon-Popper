@@ -39,15 +39,15 @@ function HitBox:checkCollision(hB2)
 	return self:checkRightSideCollision(hB2) and self:checkLeftSideCollision(hB2) and self:checkBottomSideCollision(hB2) and self:checkTopSideCollision(hB2)
 end
 
-function HitBox:update(newX,newY)
-	self.x = newX
-	self.y = newY
-	self.x_width = newX + self.size
-	self.y_height = newY + self.size
+function HitBox:update(xDiff,yDiff)
+	self.x = self.x + xDiff
+	self.y = self.y + yDiff
+	self.x_width = self.x_width + xDiff
+	self.y_height = self.y_height + yDiff
 end
 
 function HitBox:new(x,y,size)
-	return setmetatable({x = x, y = y,x_width = x + size,y_height = y + size},self)
+	return setmetatable({x = x, y = y,x_width = x + size,y_height = y + size,size = size},self)
 end
 
 return HitBox

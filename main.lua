@@ -4,7 +4,7 @@ local remove = table.remove
 local isScancodeDown = love.keyboard.isScancodeDown
 local pairs = pairs
 
-local balloons,background,character1,character2,character3 = AssetFactory.generateAssets()
+local balloons,background,character1,character2 = AssetFactory.generateAssets("shake","stormy")
 
 function love.draw()
 	--background:print()
@@ -15,8 +15,6 @@ function love.draw()
 	character1.hitBox:print()
 	character2:print()
 	character2.hitBox:print()
-	character3:print()
-	character3.hitBox:print()
 end
 
 local playerOneScancodes = {
