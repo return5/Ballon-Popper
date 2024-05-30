@@ -8,11 +8,13 @@ AssetFactory.__index = AssetFactory
 _ENV = AssetFactory
 
 
-function AssetFactory.generateAssets(playerChoice)
+function AssetFactory.generateAssets(playerOneChoice,playerTwoChoice)
 	local balloons = BalloonFactory.generateBalloons()
-	local character1,character2 = CharacterFactory.generateCharacter(playerChoice)
+	local character1 = CharacterFactory.generateCharacter("shake")
+	local character2 = CharacterFactory.generateCharacter("quinn")
+	local character3 = CharacterFactory.generateCharacter("stormy")
 	local background = CanvasFactory.generateBackground()
-	return balloons,background,character1,character2
+	return balloons,background,character1,character2,character3
 end
 
 return AssetFactory
