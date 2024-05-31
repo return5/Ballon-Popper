@@ -17,6 +17,8 @@ function ImgObject:new(x,y,hitBox,img,rot)
 	local imgObj = setmetatable(Object:new(x,y,hitBox),self)
 	imgObj.img = img
 	imgObj.rot = rot
+	imgObj.width = img:getWidth()
+	imgObj.height = img:getHeight()
 	imgObj.halfWidth = floor(img:getWidth() / 2)
 	imgObj.halfHeight = floor(img:getHeight() / 2)
 	return imgObj

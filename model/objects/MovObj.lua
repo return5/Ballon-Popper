@@ -9,7 +9,7 @@ setmetatable(MovObject,ImgObj)
 _ENV = MovObject
 
 function MovObject:checkBounds()
-	if self.x < 0 or self.x > config.width or self.y < 0 or self.y > config.height then
+	if self.x < 0 or self.x + self.width > config.width or self.y < 0 or self.y + self.height > config.height then
 		self.y = self.prevY
 		self.x = self.prevX
 		return false
@@ -23,30 +23,34 @@ end
 
 function MovObject:moveUp(dt)
 	self.prevY = self.y
+	self.prevX = self.x
 	self.y = self.y - dt * self.speed
 	self:checkBounds()
-	self.hitBox:update(0,self.y - self.prevY)
+	self.hitBox:update(self.x - self.prevX,self.y - self.prevY)
 end
 
 function MovObject:moveDown(dt)
 	self.prevY = self.y
+	self.prevX = self.x
 	self.y = self.y + dt * self.speed
 	self:checkBounds()
-	self.hitBox:update(0,self.y - self.prevY)
+	self.hitBox:update(self.x - self.prevX,self.y - self.prevY)
 end
 
 function MovObject:moveLeft(dt)
 	self.prevX = self.x
+	self.prevY = self.y
 	self.x = self.x - dt * self.speed
 	self:checkBounds()
-	self.hitBox:update(self.x - self.prevX,0)
+	self.hitBox:update(self.x - self.prevX,self.y - self.prevY)
 end
 
 function MovObject:moveRight(dt)
 	self.prevX = self.x
+	self.prevY = self.y
 	self.x = self.x + dt * self.speed
 	self:checkBounds()
-	self.hitBox:update(self.x - self.prevX,0)
+	self.hitBox:update(self.x - self.prevX,self.y - self.prevY)
 end
 
 function MovObject:new(x,y,hitBox,img,rot,speed,dir)

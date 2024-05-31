@@ -1,13 +1,15 @@
 local tick = require('libs.tick')
 local AssetFactory = require('factory.AssetFactory')
+local config = require("config.Config")
 local remove = table.remove
 local isScancodeDown = love.keyboard.isScancodeDown
 local pairs = pairs
 
+love.window.setMode(config.width,config.height)
 local balloons,background,character1,character2 = AssetFactory.generateAssets("shake","stormy")
 
 function love.draw()
-	--background:print()
+	love.graphics.draw(background,0,0)
 	for i=1,#balloons,1 do
 		balloons[i]:print()
 	end
@@ -55,4 +57,6 @@ function love.update(dt)
 	end
 end
 
+function love.load()
+end
 
