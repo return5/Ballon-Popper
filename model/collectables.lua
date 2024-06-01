@@ -1,18 +1,25 @@
 local MovObj = require('model.objects.MovObj')
 local setmetatable = setmetatable
 
-local Balloon = {}
-Balloon.__index = Balloon
-setmetatable(Balloon,MovObj)
+local Collectable = {}
+Collectable.__index = Collectable
+setmetatable(Collectable,MovObj)
 
-_ENV = Balloon
+_ENV = Collectable
 
-function Balloon:update(dt)
+function Collectable:update(dt)
 	return self:moveUp(dt)
 end
 
-function Balloon:new(x,y,hitBox,img,rot,speed,dir)
-	return setmetatable(MovObj:new(x,y,hitBox,img,rot,speed,dir),self)
+function Collectable:playSound()
+
 end
 
-return Balloon
+function Collectable:new(x,y,hitBox,img,rot,speed,dir,points,sound)
+	local collectable = setmetatable(MovObj:new(x,y,hitBox,img,rot,speed,dir),self)
+	collectable.sound = sound
+	collectable.points = points
+	return collectable
+end
+
+return Collectable

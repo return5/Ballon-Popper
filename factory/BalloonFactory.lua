@@ -1,5 +1,5 @@
 local tick = require("libs.tick")
-local Balloon = require('model.Balloon')
+local Collectable = require('model.collectables')
 local dir = require('config.Dir')
 local config = require('config.Config')
 local HitBox = require('model.HitBox')
@@ -20,12 +20,13 @@ local balloonImgs = {
 }
 
 local  balloonStartY = config.balloonStartY - balloonImgs[1]:getHeight()
+local balloonSound = nil
 
 function BalloonFactory.createBalloon(balloonArr)
 	local balloonX = random(1,config.width)
 	local balloonImg = balloonImgs[random(1,#balloonImgs)]
 	local hitBox = HitBox:new(balloonX + 4,balloonStartY + 4,balloonImg:getWidth() - 6)
-	local balloon = Balloon:new(balloonX,balloonStartY,hitBox,balloonImg,0,random(config.balloonSpeedMin,config.balloonSpeedMax),dir.UP)
+	local balloon = Collectable:new(balloonX,balloonStartY,hitBox,balloonImg,0,random(config.balloonSpeedMin,config.balloonSpeedMax),dir.UP,50,balloonSound)
 	balloonArr[#balloonArr + 1] = balloon
 end
 
@@ -42,5 +43,10 @@ function BalloonFactory.generateBalloons()
 	tick.recur(balloonGenerator(balloonArr),0.35)
 	return balloonArr
 end
+
+function BalloonFactory.generatePretzel()
+
+end
+
 
 return BalloonFactory

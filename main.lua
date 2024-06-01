@@ -45,6 +45,12 @@ local function checkScanCode(dt)
 	checkScanCodeForPlayer(dt,playerTwoScancodes,character2)
 end
 
+local function popBalloon(i,character)
+	character:increaseScore(balloons[i])
+	balloons[i]:playSound()
+	remove(balloons,i)
+end
+
 function love.update(dt)
 	tick.update(dt)
 	checkScanCode(dt)
@@ -52,9 +58,9 @@ function love.update(dt)
 		if not balloons[i]:update(dt) then
 			remove(balloons,i)
 		elseif character1:checkCollision(balloons[i]) then
-			remove(balloons,i)
+			popBalloon(i,character1)
 		elseif character2:checkCollision(balloons[i]) then
-			remove(balloons,i)
+			popBalloon(i,character2)
 		end
 
 	end

@@ -61,12 +61,18 @@ function MovObject:moveRight(dt)
 	return val
 end
 
+function MovObject:increaseScore(obj)
+	self.score = self.score + obj.points
+end
+
+
 function MovObject:new(x,y,hitBox,img,rot,speed,dir)
 	local movObj = setmetatable(ImgObj:new(x,y,hitBox,img,rot),self)
 	movObj.speed = speed
 	movObj.dir = dir
 	movObj.prevX = x
 	movObj.prevY = y
+	movObj.score = 0
 	return movObj
 end
 
