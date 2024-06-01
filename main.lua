@@ -31,7 +31,6 @@ local playerTwoScancodes = {
 	right = character2.moveRight
 }
 
-
 local function checkScanCodeForPlayer(dt,scanCodes,player)
 	for scancode,func in pairs(scanCodes) do
 		if isScancodeDown(scancode) then

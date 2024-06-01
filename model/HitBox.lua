@@ -1,5 +1,4 @@
 local setmetatable = setmetatable
-local getColor = love.graphics.getColor
 
 local HitBox = {}
 HitBox.__index = HitBox
