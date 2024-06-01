@@ -1,19 +1,10 @@
 local setmetatable = setmetatable
-local points = love.graphics.points
-local setColor = love.graphics.setColor
 local getColor = love.graphics.getColor
 
 local HitBox = {}
 HitBox.__index = HitBox
 
 _ENV = HitBox
-local red,green,blue = getColor()
-
-function HitBox:print()
-	setColor(1,0,0)
-	points(self.x,self.y,self.x,self.y_height,self.x_width,self.y,self.x_width,self.y_height)
-	setColor(red,green,blue)
-end
 
 function HitBox:checkYWithinHb2(hB2)
 	return ((self.y_height <= hB2.y_height and self.y_height >= hB2.y) or (self.y >= hB2.y and self.y <= hB2.y_height) or
@@ -33,7 +24,7 @@ function HitBox:checkXWithinHb2(hB2)
 end
 
 function HitBox:checkBottomSideCollision(hB2)
-	return (self.y <= hB2.y and self.y >= hB2.y_height) and self:checkXWithinHb2(hB2)
+	return (self.y >= hB2.y and self.y <= hB2.y_height) and self:checkXWithinHb2(hB2)
 end
 
 function HitBox:checkTopSideCollision(hB2)
@@ -41,7 +32,7 @@ function HitBox:checkTopSideCollision(hB2)
 end
 
 function HitBox:checkCollision(hB2)
-	return self:checkRightSideCollision(hB2) and self:checkLeftSideCollision(hB2) and self:checkBottomSideCollision(hB2) and self:checkTopSideCollision(hB2)
+	return self:checkRightSideCollision(hB2) or self:checkLeftSideCollision(hB2) or self:checkBottomSideCollision(hB2) or self:checkTopSideCollision(hB2)
 end
 
 function HitBox:update(xDiff,yDiff)

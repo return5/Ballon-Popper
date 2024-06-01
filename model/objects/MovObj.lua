@@ -1,7 +1,6 @@
 local ImgObj = require('model.objects.ImgObj')
 local setmetatable = setmetatable
 local config = require('config.Config')
-local file = io.open("balloonObj.txt","w+")
 
 local MovObject = {}
 MovObject.__index = MovObject
@@ -20,10 +19,6 @@ end
 
 function MovObject:direction(newDir)
 	self.dir = newDir
-end
-
-function MovObject:checkCollision(obj)
-	return self.hitBox:checkCollision(obj.hitBox)
 end
 
 function MovObject:updateHitBox()

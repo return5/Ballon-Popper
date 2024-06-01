@@ -39,7 +39,6 @@ end
 
 function BalloonFactory.generateBalloons()
 	local balloonArr = {}
-	BalloonFactory.createBalloon(balloonArr)
 	tick.recur(balloonGenerator(balloonArr),0.35)
 	return balloonArr
 end

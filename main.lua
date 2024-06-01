@@ -12,13 +12,9 @@ function love.draw()
 	love.graphics.draw(background,0,0)
 	for i=1,#balloons,1 do
 		balloons[i]:print()
-		balloons[i].hitBox:print()
 	end
 	character1:print()
-	character1.hitBox:print()
-	character1.hitBox2:print()
 	character2:print()
-	character2.hitBox:print()
 end
 
 local playerOneScancodes = {

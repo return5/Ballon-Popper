@@ -8,7 +8,7 @@ setmetatable(MasterShake,MovObj)
 _ENV = MasterShake
 
 function MasterShake:checkCollision(obj)
-	return self.hitBox:checkCollision(obj.hitBox) and self.hitBox2:checkCollision(obj.hitBox)
+	return self.hitBox:checkCollision(obj.hitBox) or self.hitBox2:checkCollision(obj.hitBox)
 end
 
 function MasterShake:updateHitBox()
