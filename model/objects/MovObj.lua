@@ -1,6 +1,7 @@
 local ImgObj = require('model.objects.ImgObj')
 local setmetatable = setmetatable
 local config = require('config.Config')
+local file = io.open("balloonObj.txt","w+")
 
 local MovObject = {}
 MovObject.__index = MovObject
@@ -21,36 +22,48 @@ function MovObject:direction(newDir)
 	self.dir = newDir
 end
 
+function MovObject:checkCollision(obj)
+	return self.hitBox:checkCollision(obj.hitBox)
+end
+
+function MovObject:updateHitBox()
+	self.hitBox:update(self.x - self.prevX,self.y - self.prevY)
+end
+
 function MovObject:moveUp(dt)
 	self.prevY = self.y
 	self.prevX = self.x
 	self.y = self.y - dt * self.speed
-	self:checkBounds()
-	self.hitBox:update(self.x - self.prevX,self.y - self.prevY)
+	local val = self:checkBounds()
+	self:updateHitBox()
+	return val
 end
 
 function MovObject:moveDown(dt)
 	self.prevY = self.y
 	self.prevX = self.x
 	self.y = self.y + dt * self.speed
-	self:checkBounds()
-	self.hitBox:update(self.x - self.prevX,self.y - self.prevY)
+	local val = self:checkBounds()
+	self:updateHitBox()
+	return val
 end
 
 function MovObject:moveLeft(dt)
 	self.prevX = self.x
 	self.prevY = self.y
 	self.x = self.x - dt * self.speed
-	self:checkBounds()
-	self.hitBox:update(self.x - self.prevX,self.y - self.prevY)
+	local val = self:checkBounds()
+	self:updateHitBox()
+	return val
 end
 
 function MovObject:moveRight(dt)
 	self.prevX = self.x
 	self.prevY = self.y
 	self.x = self.x + dt * self.speed
-	self:checkBounds()
-	self.hitBox:update(self.x - self.prevX,self.y - self.prevY)
+	local val = self:checkBounds()
+	self:updateHitBox()
+	return val
 end
 
 function MovObject:new(x,y,hitBox,img,rot,speed,dir)

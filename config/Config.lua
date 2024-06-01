@@ -1,9 +1,9 @@
 local config = {
 	height = 500,
-	width = 500,
+	width = 600,
 	balloonSpeedMin = 100,
 	balloonSpeedMax = 200,
-	characterSpeed = 220
+	characterSpeed = 270
 }
 
 config.balloonStartY = config.height - 10

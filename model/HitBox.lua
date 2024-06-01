@@ -1,13 +1,18 @@
 local setmetatable = setmetatable
 local points = love.graphics.points
+local setColor = love.graphics.setColor
+local getColor = love.graphics.getColor
 
 local HitBox = {}
 HitBox.__index = HitBox
 
 _ENV = HitBox
+local red,green,blue = getColor()
 
 function HitBox:print()
+	setColor(1,0,0)
 	points(self.x,self.y,self.x,self.y_height,self.x_width,self.y,self.x_width,self.y_height)
+	setColor(red,green,blue)
 end
 
 function HitBox:checkYWithinHb2(hB2)

@@ -12,9 +12,11 @@ function love.draw()
 	love.graphics.draw(background,0,0)
 	for i=1,#balloons,1 do
 		balloons[i]:print()
+		balloons[i].hitBox:print()
 	end
 	character1:print()
 	character1.hitBox:print()
+	character1.hitBox2:print()
 	character2:print()
 	character2.hitBox:print()
 end
@@ -53,7 +55,12 @@ function love.update(dt)
 	for i=#balloons,1,-1 do
 		if not balloons[i]:update(dt) then
 			remove(balloons,i)
+		elseif character1:checkCollision(balloons[i]) then
+			remove(balloons,i)
+		elseif character2:checkCollision(balloons[i]) then
+			remove(balloons,i)
 		end
+
 	end
 end
 
