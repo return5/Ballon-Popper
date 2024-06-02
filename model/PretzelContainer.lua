@@ -18,7 +18,7 @@ local pretzelSound = nil
 
 local function generatePretzel()
 	local pretzelX = random(1,config.width - pretzelImg:getWidth())
-	local pretzelY = random(75,config.balloonStartY)
+	local pretzelY = random(70,config.balloonStartY - 40)
 	local hitBox = HitBox:new(pretzelX + 4,pretzelY + 4,pretzelImg:getWidth() - 4)
 	return Pretzel:new(pretzelX,pretzelY,hitBox,pretzelImg,0,200,dir.LEFT,250,pretzelSound)
 end
