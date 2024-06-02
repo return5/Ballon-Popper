@@ -22,7 +22,7 @@ local gameOverY = config.height / 2
 local function drawDuringGamePlay()
 	love.graphics.draw(background,0,0)
 	countDown:print()
-	pretzel[1]:print()
+	pretzel:print()
 	for i=1,#balloons,1 do
 		balloons[i]:print()
 	end
@@ -66,10 +66,10 @@ local function popBalloon(i,character)
 end
 
 local function pretzelFunction(dt)
-	pretzel[1]:move(dt)
-	if character1:checkCollision(pretzel[1]) then
+	pretzel:move(dt)
+	if character1:checkCollision(pretzel:getPretzel()) then
 
-	elseif character2:checkCollision(pretzel[1]) then
+	elseif character2:checkCollision(pretzel:getPretzel()) then
 
 	end
 end

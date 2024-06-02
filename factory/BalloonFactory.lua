@@ -21,11 +21,8 @@ local balloonImgs = {
 	newImg('assets/img/balloons/balloon5.png')
 }
 
-local pretzelImg = newImg('assets/img/pretzel/pretzel1.png')
-local pretzelSound = nil
 local  balloonStartY = config.balloonStartY - balloonImgs[1]:getHeight()
 local balloonSound = nil
-local emptyPretzel = EmptyCharacter:new()
 
 function BalloonFactory.createBalloon(balloonArr)
 	local balloonImg = balloonImgs[random(1,#balloonImgs)]
@@ -49,29 +46,5 @@ function BalloonFactory.generateBalloons()
 	return balloonArr
 end
 
-function BalloonFactory.generatePretzel()
-	local pretzelX = random(1,config.width - pretzelImg:getWidth())
-	local pretzelY = random(75,balloonStartY)
-	local hitBox = HitBox:new(pretzelX + 4,pretzelY + 4,pretzelImg:getWidth() - 4)
-	return Pretzel:new(pretzelX,pretzelY,hitBox,pretzelImg,0,200,dir.LEFT,250,pretzelSound)
-end
-
-function BalloonFactory.generatePretzelGenerator(pretzels)
-	return function()
-		if pretzels[1].type == "empty" and random(3,8) > 3  then
-			pretzels[1] = BalloonFactory.generatePretzel()
-		end
-	end
-end
-
-function BalloonFactory.generateEmptyPretzel()
-	return emptyPretzel
-end
-
-function BalloonFactory.generatePretzelsArr()
-	local pretzels = {BalloonFactory.generateEmptyPretzel()}
-	tick.recur(BalloonFactory.generatePretzelGenerator(pretzels),0.2)
-	return pretzels
-end
 
 return BalloonFactory

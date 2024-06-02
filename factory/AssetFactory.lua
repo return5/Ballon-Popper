@@ -2,6 +2,7 @@ local BalloonFactory = require('factory.BalloonFactory')
 local CharacterFactory = require('factory.CharacterFactory')
 local CanvasFactory = require('factory.CanvasFactory')
 local CountDownFactory = require('factory.CountDownFactory')
+local PretzelContainer = require('model.PretzelContainer')
 
 local AssetFactory = {}
 AssetFactory.__index = AssetFactory
@@ -21,8 +22,7 @@ end
 function AssetFactory.generateAssets()
 	local balloons = BalloonFactory.generateBalloons()
 	local background = CanvasFactory.generateBackground()
-	local pretzelsArr = BalloonFactory.generatePretzelsArr()
-	return balloons,background,pretzelsArr
+	return balloons,background,PretzelContainer:new()
 end
 
 function AssetFactory.generateCountDown()
