@@ -12,7 +12,7 @@ function Collectable:update(dt)
 end
 
 function Collectable:playSound()
-
+	self.sound:play()
 end
 
 function Collectable:new(x,y,hitBox,img,rot,speed,dir,points,sound)

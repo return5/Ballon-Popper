@@ -3,10 +3,9 @@ local Collectable = require('model.Collectables')
 local dir = require('config.Dir')
 local config = require('config.Config')
 local HitBox = require('model.HitBox')
-local Pretzel = require('model.Pretzel')
-local EmptyCharacter = require('model.EmptyCharacter')
 local newImg = love.graphics.newImage
 local random = love.math.random
+local newSource = love.audio.newSource
 
 local BalloonFactory = {}
 BalloonFactory.__index = BalloonFactory
@@ -22,7 +21,7 @@ local balloonImgs = {
 }
 
 local  balloonStartY = config.balloonStartY - balloonImgs[1]:getHeight()
-local balloonSound = nil
+local balloonSound = newSource('assets/sounds/balloonPop.mp3',"static")
 
 function BalloonFactory.createBalloon(balloonArr)
 	local balloonImg = balloonImgs[random(1,#balloonImgs)]

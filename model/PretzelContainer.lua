@@ -5,6 +5,7 @@ local config = require('config.Config')
 local dir = require('config.Dir')
 local newImg = love.graphics.newImage
 local random = love.math.random
+local newSource = love.audio.newSource
 local emptyPretzel = require('model.EmptyCharacter'):new()
 local setmetatable = setmetatable
 
@@ -14,7 +15,7 @@ PretzelContainer.__index = PretzelContainer
 _ENV = PretzelContainer
 
 local pretzelImg = newImg('assets/img/pretzel/pretzel.png')
-local pretzelSound = nil
+local pretzelSound = newSource('assets/sounds/bonusPretzel.mp3',"static")
 
 local function generatePretzel()
 	local pretzelX = random(1,config.width - pretzelImg:getWidth())
@@ -61,6 +62,7 @@ function PretzelContainer:resetPretzel()
 end
 
 function PretzelContainer:collectBonusPretzel(character)
+	self.pretzel:playSound()
 	character.score = character.score + self.pretzel.points
 	self:resetPretzel()
 end
