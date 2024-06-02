@@ -1,5 +1,6 @@
 return {
 	MasterShake = "Master Shake",
 	Quinn = "Quinn",
-	Stormy = "Stormy"
+	Stormy = "Stormy",
+	NoChoice = "No Player"
 }

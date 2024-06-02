@@ -6,6 +6,10 @@ EmptyCharacter.__index = EmptyCharacter
 
 _ENV = EmptyCharacter
 
+function EmptyCharacter:printScore()
+	return true
+end
+
 function EmptyCharacter:print()
 	return true
 end
@@ -40,6 +44,10 @@ end
 
 function EmptyCharacter:move()
 	return true
+end
+
+function EmptyCharacter:checkCollision()
+	return false
 end
 
 function EmptyCharacter:new()
