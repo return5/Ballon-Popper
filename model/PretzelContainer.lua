@@ -27,7 +27,7 @@ end
 
 local function generatePretzelGenerator(pretzelContainer)
 	return function()
-		if random(1,30) > 28  then
+		if random(1,30) > 29  then
 			pretzelContainer:createPretzel()
 		end
 	end
