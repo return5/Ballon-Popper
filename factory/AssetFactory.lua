@@ -8,14 +8,26 @@ AssetFactory.__index = AssetFactory
 
 _ENV = AssetFactory
 
-function AssetFactory.generateAssets(playerOneChoice,playerTwoChoice)
-	local balloons = BalloonFactory.generateBalloons()
+function AssetFactory.generateCharacters(playerOneChoice,playerTwoChoice)
 	local character1 = CharacterFactory.generateCharacter(playerOneChoice,0)
 	local character2 = CharacterFactory.generateCharacter(playerTwoChoice,1)
+	return character1,character2
+end
+
+function AssetFactory.initCharacters()
+	return CharacterFactory.generateEmpty(),CharacterFactory.generateEmpty()
+end
+
+function AssetFactory.generateAssets()
+	local balloons = BalloonFactory.generateBalloons()
 	local background = CanvasFactory.generateBackground()
 	local pretzelsArr = BalloonFactory.generatePretzelsArr()
-	local countDown = CountDownFactory.generateCountDown()
-	return balloons,background,character1,character2,pretzelsArr,countDown
+	return balloons,background,pretzelsArr
 end
+
+function AssetFactory.generateCountDown()
+	return CountDownFactory.generateCountDown()
+end
+
 
 return AssetFactory

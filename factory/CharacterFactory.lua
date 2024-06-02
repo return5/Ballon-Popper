@@ -41,6 +41,10 @@ function CharacterFactory.generateStormy(pos)
 	return Character:new(x,y,hitBox,stormyImg,0,config.characterSpeed,dir.LEFT,pos)
 end
 
+function CharacterFactory.generateEmpty()
+	return EmptyChar:new()
+end
+
 function CharacterFactory.generateCharacter(playerChoice,pos)
 	if playerChoice == CharacterChoices.MasterShake then
 		return CharacterFactory.generateMasterShake(pos)
@@ -49,7 +53,7 @@ function CharacterFactory.generateCharacter(playerChoice,pos)
 	elseif playerChoice == CharacterChoices.Stormy then
 		return CharacterFactory.generateStormy(pos)
 	end
-	return EmptyChar:new()
+	return CharacterFactory.generateEmpty()
 end
 
 return CharacterFactory

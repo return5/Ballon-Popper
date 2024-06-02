@@ -63,4 +63,12 @@ function PlayerChoices.checkScanCodes()
 	return selections
 end
 
+function PlayerChoices.init()
+	selection = 1
+	selections = {}
+	playerChoice = 1
+	debounceTimer = time()
+	setFont(textFont)
+end
+
 return PlayerChoices

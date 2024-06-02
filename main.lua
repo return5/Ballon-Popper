@@ -2,12 +2,22 @@ local tick = require('libs.tick')
 local AssetFactory = require('factory.AssetFactory')
 local config = require("config.Config")
 local PlayerChoices = require('model.PlayerChoices')
+local defaultFont = love.graphics.getFont()
+local gameOVerFont = love.graphics.newFont(50)
 local remove = table.remove
 local isScancodeDown = love.keyboard.isScancodeDown
 local pairs = pairs
 
 love.window.setMode(config.width,config.height)
-local balloons,background,character1,character2,pretzel,countDown
+
+--forward declare with default values
+local character1,character2 = AssetFactory.initCharacters()
+--forward declare
+local countDown
+local balloons,background,pretzel = AssetFactory.generateAssets()
+local gameOVerText = "Game Over!"
+local gameOVerX = (config.width / 2) - (gameOVerFont:getWidth(gameOVerText) / 2)
+local gameOverY = config.height / 2
 
 local function drawDuringGamePlay()
 	love.graphics.draw(background,0,0)
@@ -26,15 +36,12 @@ local function drawDuringPlayerSelection()
 	PlayerChoices.print()
 end
 
-
 local function drawDuringGameOVer()
 	drawDuringGamePlay()
-
+	love.graphics.setFont(gameOVerFont)
+	love.graphics.print(gameOVerText,gameOVerX,gameOverY)
 end
 
-local playerOneScancodes = {}
-
-local playerTwoScancodes = {}
 
 local function checkScanCodeForPlayer(dt,scanCodes,player)
 	for scancode,func in pairs(scanCodes) do
@@ -43,6 +50,9 @@ local function checkScanCodeForPlayer(dt,scanCodes,player)
 		end
 	end
 end
+
+local playerOneScancodes = {}
+local playerTwoScancodes = {}
 
 local function checkScanCode(dt)
 	checkScanCodeForPlayer(dt,playerOneScancodes,character1)
@@ -74,13 +84,8 @@ local function checkBalloonCollision(i,dt)
 	end
 end
 
-local function updateDuringGameOVer(dt)
-
-end
-
-local function setGameOVer()
-
-end
+--forward declare
+local setGameOVer = function() end
 
 local function updateDuringPlay(dt)
 	tick.update(dt)
@@ -95,7 +100,8 @@ local function updateDuringPlay(dt)
 end
 
 local function setGamePlay(playerOneChoice,playerTwoChoice)
-	balloons,background,character1,character2,pretzel,countDown = AssetFactory.generateAssets(playerOneChoice,playerTwoChoice)
+	character1,character2 = AssetFactory.generateCharacters(playerOneChoice,playerTwoChoice)
+	countDown = AssetFactory.generateCountDown()
 	love.update = updateDuringPlay
 	love.draw = drawDuringGamePlay
 	playerOneScancodes = {
@@ -121,8 +127,25 @@ local function updateDuringPlayerSelection()
 end
 
 local function setUpNewGame()
+	love.graphics.setFont(defaultFont)
 	love.update = updateDuringPlayerSelection
 	love.draw = drawDuringPlayerSelection
+	PlayerChoices.init()
+end
+
+local function checkScancodesDuringGameOver()
+	if isScancodeDown("return") or isScancodeDown("r") then
+		setUpNewGame()
+	end
+end
+
+local function updateDuringGameOVer(dt)
+	checkScancodesDuringGameOver()
+end
+
+setGameOVer = function()
+	love.draw = drawDuringGameOVer
+	love.update = updateDuringGameOVer
 end
 
 setUpNewGame()
