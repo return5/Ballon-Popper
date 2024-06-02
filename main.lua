@@ -65,12 +65,19 @@ local function popBalloon(i,character)
 	remove(balloons,i)
 end
 
+local function collectBonusPretzel(character)
+	pretzel:collectBonusPretzel(character)
+	for i=#balloons,1,-1 do
+		popBalloon(i,character)
+	end
+end
+
 local function pretzelFunction(dt)
 	pretzel:move(dt)
 	if character1:checkCollision(pretzel:getPretzel()) then
-
+		collectBonusPretzel(character1)
 	elseif character2:checkCollision(pretzel:getPretzel()) then
-
+		collectBonusPretzel(character2)
 	end
 end
 

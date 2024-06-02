@@ -13,7 +13,7 @@ PretzelContainer.__index = PretzelContainer
 
 _ENV = PretzelContainer
 
-local pretzelImg = newImg('assets/img/pretzel/pretzel1.png')
+local pretzelImg = newImg('assets/img/pretzel/pretzel.png')
 local pretzelSound = nil
 
 local function generatePretzel()
@@ -26,18 +26,14 @@ end
 
 local function generatePretzelGenerator(pretzelContainer)
 	return function()
-		if random(3,8) > 3  then
+		if random(1,30) > 28  then
 			pretzelContainer:createPretzel()
 		end
 	end
 end
 
 local function generatePretzelCountDown(pretzelContainer)
-	return function()
-		tick.remove(pretzelContainer.event)
-		pretzelContainer.event = tick.recur(generatePretzelGenerator(pretzelContainer),0.2)
-		pretzelContainer.pretzel = emptyPretzel
-	end
+	return function() pretzelContainer:resetPretzel() end
 end
 
 function PretzelContainer:createPretzel()
@@ -56,6 +52,17 @@ end
 
 function PretzelContainer:getPretzel()
 	return self.pretzel
+end
+
+function PretzelContainer:resetPretzel()
+	tick.remove(self.event)
+	self.event = tick.recur(generatePretzelGenerator(self),0.2)
+	self.pretzel = emptyPretzel
+end
+
+function PretzelContainer:collectBonusPretzel(character)
+	character.score = character.score + self.pretzel.points
+	self:resetPretzel()
 end
 
 function PretzelContainer:new()
