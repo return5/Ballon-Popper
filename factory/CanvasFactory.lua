@@ -21,7 +21,7 @@ function CanvasFactory.generateBackground()
 	setCanvas(bgCanvas)
 	draw(backGroundImg,0,config.height - backGroundImg:getHeight())
 	setColor(0.1843,0.1843,0.1843)
-	rectangle("fill",0,0,config.width,50)
+	rectangle("fill",0,0,config.width,80)
 	setCanvas()
 	setColor(red,green,blue)
 	return bgCanvas

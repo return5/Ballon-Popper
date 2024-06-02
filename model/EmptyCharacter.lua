@@ -1,7 +1,7 @@
 local EmptyHitBox = require('model.EmptyHitBox')
 local setmetatable = setmetatable
 
-local EmptyCharacter = {}
+local EmptyCharacter = {type = "empty"}
 EmptyCharacter.__index = EmptyCharacter
 
 _ENV = EmptyCharacter
@@ -35,6 +35,10 @@ function EmptyCharacter:direction()
 end
 
 function EmptyCharacter:update()
+	return true
+end
+
+function EmptyCharacter:move()
 	return true
 end
 

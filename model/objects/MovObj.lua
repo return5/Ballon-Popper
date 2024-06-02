@@ -7,7 +7,6 @@ MovObject.__index = MovObject
 setmetatable(MovObject,ImgObj)
 
 _ENV = MovObject
-
 function MovObject:checkBounds()
 	if self.x < 0 or self.x + self.width > config.width or self.y < 0 or self.y + self.height > config.height then
 		self.y = self.prevY

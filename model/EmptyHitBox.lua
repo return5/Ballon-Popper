@@ -1,3 +1,4 @@
+local HItBox = require('model.HitBox')
 local setmetatable = setmetatable
 
 local EmptyHitBox = {}
@@ -18,7 +19,7 @@ function EmptyHitBox:update()
 end
 
 function EmptyHitBox:new()
-	return setmetatable({},self)
+	return setmetatable(HItBox:new(-1,-1,0),self)
 end
 
 return EmptyHitBox
