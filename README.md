@@ -39,3 +39,6 @@ at game over screen, press either 'r' or 'return' to restart and play again.
 ## External Libraries used:  
 
  - [tick](https://github.com/rxi/tick)
+
+## reviews
+ - "I hate this game." - Stormy
