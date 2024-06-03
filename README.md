@@ -19,7 +19,7 @@ at the start of the game:
 #### Player Two Controls  
  - 'up,down,left,right' keys move player two around.
 
-at game over screen, press either 'r' or 'return' the restart and play again.  
+at game over screen, press either 'r' or 'return' to restart and play again.  
 
 
 ## Requirements
